@@ -1,0 +1,46 @@
+{
+        resources: {
+                com.badlogic.gdx.graphics.g2d.NinePatch: {
+                        upImage: { x: 0, y: 0, width: 250, height: 50 },
+                        default-round: [
+                        { width: 15, height: 5, x: 2, y: 55 },
+                        { width: 12, height: 5, x: 7, y: 55 },
+                        { width: 15, height: 5, x: 9, y: 55 },
+                        { width: 15, height: 11, x: 2, y: 60 },
+                        { width: 12, height: 11, x: 7, y: 60 },
+                        { width: 15, height: 11, x: 9, y: 60 },
+                        { width: 15, height: 4, x: 2, y: 71 },
+                        { width: 12, height: 4, x: 7, y: 71 },
+                        { width: 15, height: 4, x: 9, y: 71 } ]               
+                },
+                com.badlogic.gdx.graphics.Color: {
+                        white: { r: 1, g: 1, b: 1, a: 1 },
+                        downFontColor: { r: 1, g: 0.1, b: 0.2, a: 1 }
+                },
+                com.badlogic.gdx.graphics.g2d.BitmapFont: {
+                        default-font: { file: default.fnt, scale: 0.5 }
+                },
+                com.badlogic.gdx.graphics.g2d.TextureRegion:{
+                		
+                }
+                
+        },
+        styles: {
+                com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+                        default: {
+                                font: default-font, downFontColor: downFontColor,
+                                fontColor: white, up: default-round
+                        }
+                },
+                com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+                        default: {
+                                
+                        }
+                },
+                com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+        				default: { 
+        						font: default-font, fontColor: white 
+        				}
+				}
+        }
+ }
