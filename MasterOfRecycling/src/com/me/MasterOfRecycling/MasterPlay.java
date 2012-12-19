@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -35,9 +34,11 @@ public class MasterPlay implements Screen
 	private enum GameStatus {
 		Playing, PauseScreen, GameOver
 	}
+	
 	private enum PackList {
 		Plastic,Eco, Glass, Rock, Wrong, Life, Bonus
 	}
+	
 	class PackType
 	{
 		public final Texture PackTexture;
@@ -54,6 +55,7 @@ public class MasterPlay implements Screen
 			dropped=0;
 		}
 	}
+	
 	class Package
 	{
 		public PackType pType;
@@ -173,27 +175,10 @@ public class MasterPlay implements Screen
 		kamjon=new Truck(new TextureRegion( new Texture(Gdx.files.internal("Game/truck.png"))));
 		Packages = new Array<Package>();				
 	        
-	    fontTime = new BitmapFont(Gdx.files.internal("font/arial128.fnt"),
-	            Gdx.files.internal("font/arial128.png"), false);
-	    fontTime.setColor(Color.ORANGE);
-	    fontTime.setScale(0.56f);
-	    
-	    fontPts = new BitmapFont(Gdx.files.internal("font/arial128.fnt"),
-	            Gdx.files.internal("font/arial128.png"), false);
-	    fontPts.setColor(Color.WHITE);
-	    fontPts.setScale(0.75f);
-	    
-	    fontSmall = new BitmapFont(Gdx.files.internal("font/arial128.fnt"),
-	            Gdx.files.internal("font/arial128.png"), false);
-	    fontSmall.setColor(Color.WHITE);
-	    fontSmall.setScale(0.35f);
-	    
-	    
 	    stage= new Stage(800f, 480f, false);
 	    stageCam = new OrthographicCamera();
 		stageCam.setToOrtho(false, 800, 480);
-		//stageCam.translate(-400,-240,100);
-		//stageCam.translate(-150,-140,100);
+		
 		stage.setCamera(stageCam);
 	    tableC=new Table();
 	    tableC.setFillParent(true);
@@ -205,8 +190,6 @@ public class MasterPlay implements Screen
 	    stage.addActor(tableC);
 	    stage.addActor(tableEnd);
 	    
-	    
-		
 	    restartGame();
 	}
 
@@ -239,6 +222,21 @@ public class MasterPlay implements Screen
 		fuelEIm = new Texture(Gdx.files.internal("Game/fuel-e.png"));
 		fuelLeft = new TextureRegion(fuelIm);
 		dropSound = Gdx.audio.newSound(Gdx.files.internal("Game/drop.wav"));
+		
+		fontTime = new BitmapFont(Gdx.files.internal("font/arial128.fnt"),
+	            Gdx.files.internal("font/arial128.png"), false);
+	    fontTime.setColor(Color.ORANGE);
+	    fontTime.setScale(0.56f);
+	    
+	    fontPts = new BitmapFont(Gdx.files.internal("font/arial128.fnt"),
+	            Gdx.files.internal("font/arial128.png"), false);
+	    fontPts.setColor(Color.WHITE);
+	    fontPts.setScale(0.75f);
+	    
+	    fontSmall = new BitmapFont(Gdx.files.internal("font/arial128.fnt"),
+	            Gdx.files.internal("font/arial128.png"), false);
+	    fontSmall.setColor(Color.WHITE);
+	    fontSmall.setScale(0.35f);
 	}
 
 	public void restartGame()

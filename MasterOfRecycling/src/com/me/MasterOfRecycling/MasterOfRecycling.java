@@ -12,32 +12,29 @@ public class MasterOfRecycling extends Game {
 		Menu, GameType, Play, About, Settings,Pause, Exit,None,GameOver
 	}
 	
-	public MasterMenu MenuScreen;
-	
-	public MasterPlay PlayScreen;
-	public MasterAbout AboutScreen;
-	public MasterSettings SettingsScreen;
-	public MasterEndGame GameOverScreen;
+	private MasterMenu MenuScreen;	
+	private MasterPlay PlayScreen;
+	private MasterAbout AboutScreen;
+	private MasterSettings SettingsScreen;
+	private MasterEndGame GameOverScreen;
 	private ButtonProcessor ButtonProc;
 	
+	private Preferences prefs;
 	public int scoreLast;
 	public int scoreBest;
-	
 	public boolean soundOn;
 	public float accSens;
-	
-	
-	public Preferences prefs;
-
 	public float sensitivity;
-
 	public boolean mute;
 
+	public int appWidth, appHeigth;
+	
 	private InputMultiplexer inputMultiplexer;
 		
 	@Override
 	public void create() {
 		// general setup
+		appWidth=800; appHeigth=480;
 		Texture.setEnforcePotImages(false);
 		prefs = Gdx.app.getPreferences( "profile" );
 		Gdx.input.setCatchBackKey(true);
@@ -63,7 +60,6 @@ public class MasterOfRecycling extends Game {
 	
 	public void ChangeScreen(ScreenType Scr)
 	{
-		
 		inputMultiplexer.clear();
 		inputMultiplexer.addProcessor(ButtonProc);
 		switch (Scr)
@@ -71,10 +67,8 @@ public class MasterOfRecycling extends Game {
 		case Menu:
 			this.setScreen(MenuScreen);
 			inputMultiplexer.addProcessor(MenuScreen.stage);
-			ButtonProc.SetCurrentScreen(ScreenType.Menu);
 			ButtonProc.SetBack2Screen(ScreenType.Exit);
-			ButtonProc.SetMenu2Screen(ScreenType.None);
-				
+			ButtonProc.SetMenu2Screen(ScreenType.None);				
 			break;
 		case GameType:
 			this.setScreen(PlayScreen);
@@ -82,28 +76,25 @@ public class MasterOfRecycling extends Game {
 		case Play:
 			this.setScreen(PlayScreen);
 			inputMultiplexer.addProcessor(PlayScreen.stage);
-			ButtonProc.SetCurrentScreen(ScreenType.Play);
-			ButtonProc.SetBack2Screen(ScreenType.Menu);
+			ButtonProc.SetBack2Screen(ScreenType.None);
 			ButtonProc.SetMenu2Screen(ScreenType.None);
 			PlayScreen.restartGame();
 			break;
 		case About:
 			this.setScreen(AboutScreen);
-			ButtonProc.SetCurrentScreen(ScreenType.About);
+			inputMultiplexer.addProcessor(AboutScreen.stage);
 			ButtonProc.SetBack2Screen(ScreenType.Menu);
 			ButtonProc.SetMenu2Screen(ScreenType.None);		
 			break;
 		case Settings:
 			this.setScreen(SettingsScreen);
 			inputMultiplexer.addProcessor(SettingsScreen.stage);
-			ButtonProc.SetCurrentScreen(ScreenType.Settings);
 			ButtonProc.SetBack2Screen(ScreenType.Menu);
 			ButtonProc.SetMenu2Screen(ScreenType.None);
 			break;
 		case GameOver:
 			this.setScreen(GameOverScreen);
 			inputMultiplexer.addProcessor(GameOverScreen.stage);
-			ButtonProc.SetCurrentScreen(ScreenType.GameOver);
 			ButtonProc.SetBack2Screen(ScreenType.Menu);
 			ButtonProc.SetMenu2Screen(ScreenType.None);
 			break;

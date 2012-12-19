@@ -10,32 +10,23 @@ import com.me.MasterOfRecycling.MasterOfRecycling.ScreenType;
 
 public class ButtonProcessor implements InputProcessor {
 
-	private float dispWidth;
-	private float dispHeigth;
-	
 	private MasterOfRecycling game;
-	private ScreenType theScreen;
 	private ScreenType back2Screen;
 	private ScreenType menu2Screen;
 	
 	
 	public ButtonProcessor(MasterOfRecycling GameRoot){
 		this.game=GameRoot;	
-		dispWidth=(float)Gdx.graphics.getWidth();
-		dispHeigth=(float)Gdx.graphics.getHeight();
-		Gdx.app.log("menu", "size "+dispWidth+" x "+dispHeigth);
+		float dispWidth = (float)Gdx.graphics.getWidth();
+		float dispHeigth = (float)Gdx.graphics.getHeight();
 	}
-	
-	public void SetCurrentScreen(ScreenType screen){
-		this.theScreen=screen;
-	}
-	
+		
 	public void SetBack2Screen(ScreenType screen){
 		this.back2Screen=screen;
 	}
 	
 	public void SetMenu2Screen(ScreenType screen){
-		this.back2Screen=screen;
+		this.menu2Screen=screen;
 	}
 	
 	
@@ -43,25 +34,12 @@ public class ButtonProcessor implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		if(keycode == Keys.BACK || keycode==Keys.ESCAPE){
-			Gdx.app.log("menu", "back pressed ");
-		    switch (theScreen)
-		    {
-		    case Play:
-		    	Gdx.app.log("menu", "back pressed in play");
-		    	game.ChangeScreen(ScreenType.Menu);
-		    	break;
-			case About:
-				Gdx.app.log("menu", "back pressed in about");
-		    	game.ChangeScreen(ScreenType.Menu);
-		    	break;
-			case Settings:
-				Gdx.app.log("menu", "back pressed in Settings");
-		    	game.ChangeScreen(ScreenType.Menu);
-		    	break;
-			case Menu:
+						
+			if (back2Screen==ScreenType.Exit)
 				Gdx.app.exit();
-		    }
-		    
+			else if (back2Screen!=ScreenType.None)
+				game.ChangeScreen(back2Screen);
+			
 	    }
 		return false;
 	}

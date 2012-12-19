@@ -96,6 +96,7 @@ public class MasterMenu implements Screen
 			}
 		});	
 		table.left().bottom();
+		table.pad(20);
 		table.add(buttonPlay);//.pad(10, 10, 10, 10);	
 		table.row();
 		table.add(buttonSettings);//.pad(10, 10, 10, 10);
